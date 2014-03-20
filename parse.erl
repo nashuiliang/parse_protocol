@@ -27,25 +27,25 @@ handle(Info) ->
 
   {Info_Header_Checksum, _} = split_binary(Info, 20),
 
-  io:format("Number 1 (32 bytes): ~n", []),
+  io:format("Number 1 (32 bits): ~n", []),
   io:format("\tVersion: ~w~n", [Version]),
   io:format("\tHeader length: ~w (20 bytes)~n", [Header_Length]),
   io:format("\tTOS: ~w~n", [TOS]),
   io:format("\tTotal length: ~w bytes~n", [Total_Length]),
-  io:format("Number 2 (32 bytes): ~n", []),
+  io:format("Number 2 (32 bits): ~n", []),
   io:format("\tIdentification: ~w (~.16X)~n", [Identification, Identification, "0x"]),
   io:format("\tFlags: ~w (~.16X)~n", [Flags, Flags, "0x"]),
   io:format("\tFragment offset: ~w~n", [Fragment_Offset]),
-  io:format("Number 3 (32 bytes): ~n", []),
+  io:format("Number 3 (32 bits): ~n", []),
   io:format("\tTTL(Time to live): ~w~n", [TTL]),
   io:format("\tProtocol: ~s (~w)~n", [protocol(Protocol), Protocol]),
 
   Sum_Header_Checksum = header_checksum(Info_Header_Checksum),
   io:format("\tHeader checksum: ~.16X [~.16X][~s]~n", [Header_Checksum, "0x", Sum_Header_Checksum, "0x", is_correct_head_checksum(Sum_Header_Checksum)]),
-  io:format("Number 4 (32 bytes): ~n", []),
+  io:format("Number 4 (32 bits): ~n", []),
   io:format("\tSource: ~w.~w.~w.~w~n", [SourceIP1, SourceIP2, SourceIP3, SourceIP4]),
   io:format("\tDestination: ~w.~w.~w.~w~n", [DestinationIP1, DestinationIP2, DestinationIP3, DestinationIP4]),
-  io:format("Number 5 (32 bytes): ~n", []).
+  io:format("Number 5 (32 bits): ~n", []).
 
   %io:format("~p~n", [Others]).
 
