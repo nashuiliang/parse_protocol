@@ -18,29 +18,24 @@
 
 解析ICMP协议
 -----------
-1.
-  * `icmp_xiaoyintong.tcpdump` 为request测试文件
+* `icmp_xiaoyintong.tcpdump` 为request测试文件
 
-    ``` bash
-    sudo tcpdump -i wlp2s0 -nnvvXX -S 'host 115.29.172.134' -c1 -w 'icmp_xiaoyintong.tcpdump'
-    ping www.xiaoyintong.com
-    ```
+  ``` bash
+  sudo tcpdump -i wlp2s0 -nnvvXX -S 'host 115.29.172.134' -c1 -w 'icmp_xiaoyintong.tcpdump'
+  ping www.xiaoyintong.com
+  ```
 
-  * erlang 环境中
+  ``` erlang
+  c(parse_icmp).
+  parse_icmp:start().
+  ```
 
-    ``` erlang
-    c(parse_icmp).
-    parse_icmp:start().
-    ```
-2.
-  * `icmp_xiaoyintong_reply.tcpdump` 为reply测试文件
+* `icmp_xiaoyintong_reply.tcpdump` 为reply测试文件
 
     ``` bash
     sudo tcpdump -i wlp2s0 -nnvvXX -S 'host 115.29.172.134 and icmp[icmptype]=icmp-echoreply' -c1 -w 'icmp_xiaoyintong_reply.tcpdump'
     ping www.xiaoyintong.com
     ```
-
-  * erlang 环境中
 
     ``` erlang
     c(parse_icmp).
