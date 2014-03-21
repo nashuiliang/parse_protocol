@@ -3,9 +3,9 @@
 
 解析IP协议
 --------------------------
-* `first.tcpdump`  为测试文件
+`first.tcpdump`  为测试文件
 	sudo tcpdump -i wlp2s0 -nnvvXX -S 'host 115.29.172.134' -c1 -w 'first.tcpdump'
-* erlang 环境中
+erlang 环境中
 	c(parse).
 	parse:start().
 
