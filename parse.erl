@@ -3,7 +3,7 @@
 %-define(IPV4_Version, 16#0800).
 
 start() ->
-  {ok, File_Content} = file:read_file("./f"),
+  {ok, File_Content} = file:read_file("first.tcpdump"),
   ContentSize = size(File_Content),
   find_ip_position(File_Content, 0, ContentSize).
 
