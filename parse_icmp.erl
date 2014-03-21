@@ -27,7 +27,7 @@ parse_icmp_protocol(_, Content) ->
   <<Type:8, Code:8, Checksum:16,
     Identifier:16, Sequence_Number:16,
     Data/binary>> = Content,
-  io:format("~nICMP(internet control message protocol~n"),
+  io:format("~nICMP(internet control message protocol)~n"),
   io:format("\tType: ~w [~s] [8 bits]~n", [Type, icmp_type(Type)]),
   io:format("\tCode: ~w [8 bits]~n", [Code]),
 
