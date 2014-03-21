@@ -5,7 +5,7 @@
 --------------------------
 * 文件名：`first.tcpdump`  为测试文件
 * 获取测试文件方式：
-  sudo tcpdump -i wlp2s0 -nnvvXX -S 'host 115.29.172.134' -c1 -w 'first.tcpdump'
+	sudo tcpdump -i wlp2s0 -nnvvXX -S 'host 115.29.172.134' -c1 -w 'first.tcpdump'
 * 执行：
 	c(parse).
 	parse:start().
