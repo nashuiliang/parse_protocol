@@ -5,16 +5,16 @@
 --------------------------
 * `first.tcpdump`  为测试文件
 
-``` bash
-sudo tcpdump -i wlp2s0 -nnvvXX -S 'host 115.29.172.134' -c1 -w 'first.tcpdump'
-```
+  ``` bash
+  sudo tcpdump -i wlp2s0 -nnvvXX -S 'host 115.29.172.134' -c1 -w 'first.tcpdump'
+  ```
 
 * erlang 环境中
 
-``` erlang
-c(parse).
-parse:start().
-```
+  ``` erlang
+  c(parse).
+  parse:start().
+  ```
 
 解析ICMP协议
 -----------
