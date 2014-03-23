@@ -12,7 +12,7 @@
 * erlang 环境中
 
   ``` erlang
-  c(parse_tcpdump, parse_ip).
+  lc(parse_tcpdump, parse_ip).
 
   % return tuple
   parse_ip:ip_protocol_info("first.tcpdump").
