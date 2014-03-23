@@ -12,8 +12,16 @@
 * erlang 环境中
 
   ``` erlang
-  c(parse).
-  parse:start().
+  c(parse_tcpdump).
+  c(parse_ip).
+  ```
+  得到`tuple`
+  ``` erlang
+  parse_ip:ip_protocol_info("first.tcpdump").
+  ```
+  输出IP 内容
+  ``` erlang
+  parse_ip:parse_ip_protocol_info("first.tcpdump").
   ```
 
 解析ICMP协议
@@ -27,7 +35,12 @@
 
   ``` erlang
   c(parse_icmp).
-  parse_icmp:start().
+  c(parse_tcpdump).
+  c(parse_ip).
+  % return tuple
+  parse_icmp:icmp_protocol_info("icmp_xiaoyintong.tcpdump").
+  % print tuple
+  parse_icmp:print_icmp_protocol_info("icmp_xiaoyintong.tcpdump").
   ```
 
 * `icmp_xiaoyintong_reply.tcpdump` 为reply测试文件
@@ -38,6 +51,11 @@
     ```
 
     ``` erlang
-    c(parse_icmp).
-    parse_icmp:start_reply().
+  c(parse_icmp).
+  c(parse_tcpdump).
+  c(parse_ip).
+  % return tuple
+  parse_icmp:icmp_protocol_info("icmp_xiaoyintong_reply.tcpdump").
+  % print tuple
+  parse_icmp:print_icmp_protocol_info("icmp_xiaoyintong_reply.tcpdump").
     ```
