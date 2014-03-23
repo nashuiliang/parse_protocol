@@ -12,15 +12,11 @@
 * erlang 环境中
 
   ``` erlang
-  c(parse_tcpdump).
-  c(parse_ip).
-  ```
-  得到`tuple`
-  ``` erlang
+  c(parse_tcpdump, parse_ip).
+
+  % return tuple
   parse_ip:ip_protocol_info("first.tcpdump").
-  ```
-  输出IP 内容
-  ``` erlang
+  % print tuple
   parse_ip:parse_ip_protocol_info("first.tcpdump").
   ```
 
@@ -34,9 +30,8 @@
   ```
 
   ``` erlang
-  c(parse_icmp).
-  c(parse_tcpdump).
-  c(parse_ip).
+  lc(parse_tcpdump, ip, icmp).
+
   % return tuple
   parse_icmp:icmp_protocol_info("icmp_xiaoyintong.tcpdump").
   % print tuple
@@ -51,9 +46,8 @@
     ```
 
     ``` erlang
-  c(parse_icmp).
-  c(parse_tcpdump).
-  c(parse_ip).
+  lc(parse_tcpdump, ip, icmp).
+
   % return tuple
   parse_icmp:icmp_protocol_info("icmp_xiaoyintong_reply.tcpdump").
   % print tuple
