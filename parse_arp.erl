@@ -58,7 +58,7 @@ hardware_type(T) ->
 arp_type(T) ->
   <<Val:48>> = T,
   if
-    Val =:= 16#ffffffffffff -> {ok, "broadcast"};
+    Val =:= 16#00000000-> {ok, "broadcast"};
     true -> {ok, "normal"}
   end.
 

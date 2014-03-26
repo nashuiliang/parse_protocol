@@ -46,10 +46,27 @@
     ```
 
     ``` erlang
-  lc(parse_tcpdump, ip, icmp).
+  lc(parse_tcpdump, parse_ip, parse_icmp).
 
   % return tuple
   parse_icmp:icmp_protocol_info("icmp_xiaoyintong_reply.tcpdump").
   % print tuple
   parse_icmp:print_icmp_protocol_info("icmp_xiaoyintong_reply.tcpdump").
     ```
+
+解析ARP协议
+-----------
+* `arp_request.tcpdump` 为request测试文件
+
+  ``` bash
+  sudo tcpdump -i wlp2s0 arp -c1 -w 'arp_request.tcpdump'
+  ```
+
+  ``` erlang
+  lc(parse_tcpdump, parse_ip, parse_ethernet).
+
+  % return tuple
+  parse_arp:arp_info("arp_request.tcpdump").
+  % print tuple
+  parse_icmp:print_arp_info("arp_request.tcpdump").
+  ```
