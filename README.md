@@ -70,3 +70,36 @@
   % print tuple
   parse_icmp:print_arp_info("arp_request.tcpdump").
   ```
+
+Version2
+==========
+
+解析UDP协议
+-----------
+* `dns_source` 为request测试文件
+
+  ``` bash
+  cd version2
+  ```
+
+  ``` erlang
+  lc(parse_ethernet, parse_ip, parse_udp).
+
+  % normal list
+  {ok, File_content} = file:read_file("dns_source").
+  {ok, _, _, _, {data, IP_content}} = parse_ethernet:ethernet_proto_info(File_content).
+  {ok, _, _, _, {src, _, Raw_src_ip, dst, _, Raw_dst_ip}, {data, UDP_content}}
+  = parse_ip:ip_proto_info(IP_content).
+  %% return tuple
+  parse_udp:udp_proto_info(UDP_content, Raw_src_ip, Raw_dst_ip).
+  %% print tuple
+  parse_udp:print_udp_proto_info(UDP_content, Raw_src_ip, Raw_dst_ip).
+  ```
+  简单的方法
+  ``` erlang
+  lc(parse_ethernet, parse_ip, parse_udp).
+  %% return tuple
+  parse_udp:speed_udp_proto_info("dns_source").
+  %% print tuple
+  parse_udp:print_speed_udp_proto_info("dns_source").
+  ```
