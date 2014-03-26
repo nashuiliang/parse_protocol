@@ -1,6 +1,6 @@
 -module(parse_ip).
 -import(parse_ethernet, [ethernet_info/1]).
--export([ip_protocol_info/1, print_ip_protocol_info/1, header_checksum/1]).
+-export([ip_protocol_info/1, print_ip_protocol_info/1, header_checksum/1, ip_address/1, protocol_type/1]).
 
 -define(Protocol_ICMP, 1).
 -define(Protocol_TCP, 6).
@@ -11,10 +11,9 @@ ip_protocol_info(File_name) ->
 
   <<Version:4, Header_Length:4, TOS:8, Total_Length:16,
     Identification:16, Flags:3, Fragment_Offset:13,
-    TTL:8, Protocol:8, Header_Checksum: 16,
-    SourceIP1:8, SourceIP2:8, SourceIP3:8, SourceIP4:8,
-    DestinationIP1:8, DestinationIP2:8, DestinationIP3:8, DestinationIP4:8,
-  Temp_data/binary>> = IP_content,
+    TTL:8, Protocol:8, Header_Checksum: 16, IP_address/binary>> = IP_content,
+  {SrcIP, S_IP_content} = split_binary(IP_address, 4),
+  {DstIP, Temp_data} = split_binary(S_IP_content, 4),
 
   {_Info_Header_Checksum, _} = split_binary(IP_content, 20),
   {Data, _} = split_binary(Temp_data, (Total_Length - 20)),
@@ -35,10 +34,15 @@ ip_protocol_info(File_name) ->
           {proto, Protocol, proto_val, Protocol_Val},
           {raw_check_val, Header_Checksum, check_res, Check_Res, check_val, Check_Val}
     }, {
-      src, io_lib:format("~w.~w.~w.~w", [SourceIP1, SourceIP2, SourceIP3, SourceIP4]),
-      dst, io_lib:format("~w.~w.~w.~w", [DestinationIP1, DestinationIP2, DestinationIP3, DestinationIP4])
+      src, element(2, ip_address(SrcIP)),
+      dst, element(2, ip_address(DstIP))
     }, {data, Data}
   }.
+
+ip_address(IP) ->
+  <<IP1:8, IP2:8, IP3:8, IP4:8>> = IP,
+  {ok, io_lib:format("~w.~w.~w.~w", [IP1, IP2, IP3, IP4])}.
+
 
 print_ip_protocol_info(File_name) ->
   {ok, {version, Version, header_length, Header_Length, tos, TOS, total_length, Total_Length },
