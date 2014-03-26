@@ -1,6 +1,9 @@
 解析网络协议
 ==============
 
+Version1
+=========
+
 解析IP协议
 --------------------------
 * `first.tcpdump`  为测试文件
@@ -74,6 +77,34 @@
 Version2
 ==========
 
+解析IP协议
+--------------------------
+* `dns_source`  为测试文件
+
+  ``` bash
+  cd version2
+  ```
+
+  ``` erlang
+  lc(parse_ethernet, parse_helper, parse_ip).
+
+  % normal list
+  {ok, File_content} = file:read_file("dns_source").
+  {ok, _, _, _, {data, IP_content}} = parse_ethernet:ethernet_proto_info(File_content).
+  %% return tuple
+  parse_ip:ip_proto_info(IP_content).
+  %% print tuple
+  parse_ip:print_ip_proto_info(IP_content).
+  ```
+  简单的方法
+  ``` erlang
+  lc(parse_ethernet, parse_helper, parse_ip).
+  %% return tuple
+  parse_ip:speed_ip_proto_info("dns_source").
+  %% print tuple
+  parse_ip:print_speed_ip_proto_info("dns_source").
+  ```
+
 解析UDP协议
 -----------
 * `dns_source` 为request测试文件
@@ -83,7 +114,7 @@ Version2
   ```
 
   ``` erlang
-  lc(parse_ethernet, parse_ip, parse_udp).
+  lc(parse_ethernet, parse_helper, parse_ip, parse_udp).
 
   % normal list
   {ok, File_content} = file:read_file("dns_source").
@@ -97,7 +128,7 @@ Version2
   ```
   简单的方法
   ``` erlang
-  lc(parse_ethernet, parse_ip, parse_udp).
+  lc(parse_ethernet, parse_helper, parse_ip, parse_udp).
   %% return tuple
   parse_udp:speed_udp_proto_info("dns_source").
   %% print tuple
